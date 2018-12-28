@@ -1,30 +1,46 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {createStore} from 'redux';
+import React from  'react'
+import {connect} from 'react-redux'
+import {add, minus,AsyncAdd} from './index.redux'
+import {Button, List} from 'antd-mobile'
 
-class App extends Component {
-  render() {
+class App extends React.Component{
+  render(){
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title"> welcome liufei</h1>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1>现在有武器{this.props.num}把</h1>
+        <Button type = 'primary' onClick = {this.props.add}>申请武器</Button>
+        <h1></h1>
+        <Button type = 'primary' onClick = {this.props.minus}>扔掉武器</Button> 
+        <h1></h1>
+        <Button type = 'primary' onClick = {this.props.AsyncAdd}>拖两天给</Button> 
       </div>
-    );
+    )
   }
 }
 
-export default App;
+const mapStatetoProps = (state) => {
+  return {num:state}
+}
+const actionCreator = {add, minus, AsyncAdd}
+App = connect(mapStatetoProps, actionCreator)(App)
+export default App 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
