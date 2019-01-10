@@ -2,34 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore,applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
-import './index.css';
 import {Provider} from 'react-redux'
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import reducers from './reducers'
+import Login from './container/login/login.js'
+import Register from './container/register/register.js'
+import AuthRoute  from './component/authroute/authroute.js'
+import Recruiterinfo from './container/recruiterinfo/recruiterinfo.js'
+import Hunterinfo from './container/hunterinfo/hunterinfo.js'
+import Chat from './component/chat/chat.js'
+import Dashboard from './component/dashboard/dashboard'
+import './index.css'
+import './config'
+import 'antd-mobile/dist/antd-mobile.css'
+import App from './app'
 
-import {counter, add, minus, AsyncAdd} from './index.redux'
-// import {counter} from './es6.js'
-
-const store = createStore(counter, compose(
+const store = createStore(reducers, compose(
 	applyMiddleware(thunk),
 	window.devToolsExtension?window.devToolsExtension():f=>f
 	)
 )
 
-
-function render(){
-	ReactDOM.render(
-		(<Provider store={store}>
-			<App />,
-		</Provider>),
-		document.getElementById('root')
-		)
-}
-render()
-store.subscribe(render)
-
- 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+	(<Provider store={store}> 
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>),  
+	document.getElementById('root')
+)

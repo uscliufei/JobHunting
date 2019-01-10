@@ -5,7 +5,7 @@
   "dependencies": {
     "@babel/core": "7.1.6",
     "@svgr/webpack": "2.4.1",
-    "antd-mobile": "^2.2.0-beta.1",
+    "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
@@ -13,8 +13,11 @@
     "babel-plugin-named-asset-import": "^0.3.0",
     "babel-preset-react-app": "^7.0.0",
     "bfj": "6.1.1",
+    "body-parser": "^1.18.3",
+    "browser-cookies": "^1.2.0",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
     "chalk": "2.4.1",
+    "cookie-parser": "^1.4.3",
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
@@ -42,30 +45,49 @@
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.3.1",
     "postcss-safe-parser": "4.0.1",
+    "prop-types": "^15.6.2",
+    "rc-queue-anim": "^1.6.10",
     "react": "^16.7.0",
     "react-app-polyfill": "^0.2.0",
     "react-dev-utils": "^7.0.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^2.1.2",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "resolve": "1.8.1",
     "sass-loader": "7.1.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
     "url-loader": "1.1.1",
+    "utility": "^1.15.0",
     "webpack": "4.19.1",
-    "webpack-dev-server": "3.1.9",
+    "webpack-dev-server": "^3.1.14",
     "webpack-manifest-plugin": "2.0.4",
     "workbox-webpack-plugin": "3.6.3"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "server": "nodemon server/server.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "eqeqeq": [
+        "off"
+      ],
+      "jsx-a11y/accessible-emoji": [
+        "off"
+      ],
+      "no-unused-vars": [
+        "off"
+      ]
+    }
   },
   "browserslist": [
     ">0.2%",
@@ -125,10 +147,19 @@
           "libraryName": "antd-mobile",
           "style": "css"
         }
+      ],
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
       ]
     ]
   },
+  "proxy": "http://localhost:9093",
   "devDependencies": {
-    "babel-plugin-import": "^1.11.0"
+    "antd-mobile": "^2.2.0-beta.1",
+    "babel-plugin-import": "^1.11.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5"
   }
 }

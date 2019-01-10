@@ -1,46 +1,27 @@
-import React from  'react'
-import {connect} from 'react-redux'
-import {add, minus,AsyncAdd} from './index.redux'
-import {Button, List} from 'antd-mobile'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import Login from './container/login/login.js'
+import Register from './container/register/register.js'
+import AuthRoute  from './component/authroute/authroute.js'
+import Recruiterinfo from './container/recruiterinfo/recruiterinfo.js'
+import Hunterinfo from './container/hunterinfo/hunterinfo.js'
+import Chat from './component/chat/chat.js'
+import Dashboard from './component/dashboard/dashboard'
 
-class App extends React.Component{
-  render(){
-    return (
-      <div>
-        <h1>现在有武器{this.props.num}把</h1>
-        <Button type = 'primary' onClick = {this.props.add}>申请武器</Button>
-        <h1></h1>
-        <Button type = 'primary' onClick = {this.props.minus}>扔掉武器</Button> 
-        <h1></h1>
-        <Button type = 'primary' onClick = {this.props.AsyncAdd}>拖两天给</Button> 
-      </div>
-    )
-  }
+export default class App extends React.Component{
+	render(){
+		return  (
+			<div>
+				<AuthRoute></AuthRoute>
+				<Switch>
+					<Route path = '/recruiterinfo' component = { Recruiterinfo }></Route>
+					<Route path = '/hunterinfo' component = { Hunterinfo }></Route>
+					<Route path = '/login' component={ Login }></Route>
+					<Route path = '/register' component={ Register }></Route>
+					<Route path = '/chat/:user' component={ Chat }></Route>
+					<Route component={ Dashboard }></Route>
+				</Switch>
+			</div>
+		)
+	}
 }
-
-const mapStatetoProps = (state) => {
-  return {num:state}
-}
-const actionCreator = {add, minus, AsyncAdd}
-App = connect(mapStatetoProps, actionCreator)(App)
-export default App 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
